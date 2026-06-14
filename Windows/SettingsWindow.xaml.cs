@@ -1,14 +1,19 @@
 ﻿using System.Diagnostics;
 using System.IO;
+using System.Text.Json;
 using System.Windows;
 using System.Windows.Input;
 using PlexampRPC.Utils;
+using JsonSerializer = System.Text.Json.JsonSerializer;
 
 namespace PlexampRPC {
     /// <summary>
     /// Interaction logic for SettingsWindow.xaml
     /// </summary>
     public partial class SettingsWindow : Window {
+        
+        private static readonly JsonSerializerOptions SerializerOptions = new() { WriteIndented = true };
+        
         public SettingsWindow() {
             InitializeComponent();
 
@@ -84,6 +89,16 @@ namespace PlexampRPC {
 
             if (e.Key == Key.F12)
                 Process.Start("explorer.exe", $"/select, {Config.FilePath}");
+        }
+
+        private void CacheClear_OnClick(object sender, RoutedEventArgs e)
+        {
+            Console.WriteLine("DEBUG: Clearing Cache.");
+            string cacheFile = Path.Combine(Path.GetDirectoryName(Config.FilePath)!, "cache.json");
+            Dictionary<string, string> emptyDictionary = new();
+            string emptyJson = JsonSerializer.Serialize(emptyDictionary, SerializerOptions);
+            File.WriteAllText(cacheFile, emptyJson);
+            Console.WriteLine("DEBUG: Cache Cleared.");
         }
     }
 }

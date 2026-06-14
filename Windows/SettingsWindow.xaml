@@ -64,6 +64,8 @@
                     <TextBox x:Name="TemplateL2" Margin="0 1 0 0" HorizontalAlignment="Stretch" Text="{Binding Path=(local:Config.TemplateL2), Mode=TwoWay}" ToolTip="{}{title}, {artist}, {album}" LostFocus="Template_LostFocus" LostKeyboardFocus="Template_LostFocus"/>
                     <TextBox x:Name="TemplateL3" Margin="0 1 0 0" HorizontalAlignment="Stretch" Text="{Binding Path=(local:Config.TemplateL3), Mode=TwoWay}" ToolTip="{}{title}, {artist}, {album}"/>
                 </StackPanel>
+                <Grid Height="10" />
+                <Button Name="CacheClear" ToolTip="Useful for if album artwork is not loading" Click="CacheClear_OnClick">Clear Cache</Button>
             </StackPanel>
         </Grid>
     </Grid>
