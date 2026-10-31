@@ -72,6 +72,8 @@ jobs:
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 10.0.x
+      env:
+        DOTNET_INSTALL_DIR: "/home/ig13/actions-runner/dotnetinstall"
 
     # Add  MSBuild to the PATH: https://github.com/microsoft/setup-msbuild
     - name: Setup MSBuild.exe
